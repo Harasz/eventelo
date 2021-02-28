@@ -6,6 +6,7 @@ import {
   Subscriber,
   EmitFunction,
   EventName,
+  Callback,
 } from "./eventeloSource.interfaces";
 
 interface EventeloSource {
@@ -19,7 +20,7 @@ interface EventeloSource {
 export const EventeloSource: EventeloSource = {
   eventMap: {},
 
-  subscribe: function (eventName, callback) {
+  subscribe: function <DataType = unknown>(eventName: EventName, callback: Callback<DataType>) {
     const key = Symbol(eventName);
     const subscriber: Subscriber = {
       key,
@@ -55,7 +56,7 @@ export const EventeloSource: EventeloSource = {
     EventeloSource.eventMap = {};
   },
 
-  emit: function (eventName, callbackData) {
+  emit: function <DataType = unknown>(eventName: EventName, callbackData: DataType) {
     if (!(eventName in EventeloSource.eventMap)) {
       return 0;
     }

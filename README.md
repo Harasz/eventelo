@@ -21,47 +21,54 @@ yarn add eventelo
 
 ## Usage
 
-First, we will need a component modal to show:
-
 ```JSX
-export const Dialog = ({ onResolve }) => {
+import { useSubscriber } from "eventelo";
+import { useEffect, useState } from "react";
+
+export const Sub = () => {
+  const [state, setState] = useState("..");
+  const { subscribe, unsubscribe, uns } = useSubscriber();
+
+  useEffect(() => {
+    // Subscribe callback to event by name "input"
+    const key = subscribe("input", (data: string) => {
+      setState(data);
+    });
+
+    return () => {
+      // Unsubscribe from event by passing key returned from subscribe function
+      unsubscribe(key);
+    };
+  }, [subscribe, unsubscribe]);
+
   return (
     <div>
-      <button onClick={() => onResolve({ accepted: true })}>Accept</button>
-      <button onClick={() => onResolve({ accepted: false })}>Cancel</button>
+      <p>{state}</p>
+    </div>
+  );
+};
+
+```
+
+```JSX
+import { useEmit } from "eventelo";
+import { useState } from "react";
+
+export const Emiter = () => {
+  const [state, setState] = useState("");
+  const { emit } = useEmit();
+
+  return (
+    <div>
+      <input value={state} onChange={(e) => setState(e.currentTarget.value)} />
+      <button onClick={() => emit("input", state)}>Emit event with data</button>
+      <button onClick={() => emit("input")}>Emit event</button>
     </div>
   );
 };
 ```
 
-Then in the component we want to open a modal, we need to use `useModal` hook from `use-async-modal` package.
-
-```JSX
-import { useModal } from "use-async-modal";
-import { Dialog } from "./Dialog";
-
-export const App = () => {
-  const showDialog = useModal({
-    Component: Dialog,
-  });
-
-  async function handleClick() {
-    const status = await showDialog();
-    // { accepted: true } or { accepted: false }
-  }
-
-  return (
-    <>
-      <button onClick={handleClick}>Open dialog</button>
-    </>
-  );
-};
-
-```
-
-As a hook argument we pass an object with properties `Component` which is our modal component. `showDialog` is a function that return promise with our value passed to function `onResolve` in `Dialog` component.
-
-More [examples](https://github.com/Harasz/use-async-modal/tree/main/examples) of usage.
+More [examples](https://github.com/Harasz/eventelo/tree/main/examples) of usage.
 
 ## Contributing
 
@@ -71,4 +78,4 @@ Please make sure to update tests as appropriate.
 
 ## License
 
-[MIT](https://github.com/Harasz/use-async-modal/blob/main/LICENSE)
+[MIT](https://github.com/Harasz/eventelo/blob/main/LICENSE)
