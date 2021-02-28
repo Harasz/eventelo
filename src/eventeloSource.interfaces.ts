@@ -14,7 +14,7 @@ export type SubscribeFunction<DataType = unknown> = (
   callback: Callback<DataType>,
 ) => symbol;
 export type UnsubscribeFunction = (key: symbol) => void;
-export type UnsubscribeAllFunction = () => void;
+export type UnsubscribeAllFunction = (eventName?: EventName) => void;
 export type EmitFunction<DataType = unknown> = (
   eventName: EventName,
   callbackData?: DataType,

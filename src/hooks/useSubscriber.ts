@@ -1,10 +1,14 @@
 import { EventeloSource } from "../eventeloSource";
-import { SubscribeFunction, UnsubscribeFunction } from "../eventeloSource.interfaces";
+import {
+  SubscribeFunction,
+  UnsubscribeFunction,
+  UnsubscribeAllFunction,
+} from "../eventeloSource.interfaces";
 
 interface UseSubscriberReturnType {
   subscribe: SubscribeFunction;
   unsubscribe: UnsubscribeFunction;
-  unsubscribeAll: () => void;
+  unsubscribeAll: UnsubscribeAllFunction;
 }
 
 export function useSubscriber(): UseSubscriberReturnType {

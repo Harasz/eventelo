@@ -5,6 +5,7 @@ import {
   UnsubscribeAllFunction,
   Subscriber,
   EmitFunction,
+  EventName,
 } from "./eventeloSource.interfaces";
 
 interface EventeloSource {
@@ -19,7 +20,6 @@ export const EventeloSource: EventeloSource = {
   eventMap: {},
 
   subscribe: function (eventName, callback) {
-    console.log(EventeloSource);
     const key = Symbol(eventName);
     const subscriber: Subscriber = {
       key,
@@ -46,7 +46,12 @@ export const EventeloSource: EventeloSource = {
     }
   },
 
-  unsubscribeAll: function () {
+  unsubscribeAll: function (eventName?: EventName) {
+    if (eventName) {
+      EventeloSource.eventMap[eventName] = [];
+      return;
+    }
+
     EventeloSource.eventMap = {};
   },
 
