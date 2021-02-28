@@ -1,2 +1,2 @@
-export { useEmit } from "./useEmit";
-export { useSubscriber } from "./useSubscriber";
+export { useEmit, UseEmitReturnType } from "./useEmit";
+export { useSubscriber, UseSubscriberReturnType } from "./useSubscriber";

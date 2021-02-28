@@ -1,7 +1,7 @@
 import { EventeloSource } from "../eventeloSource";
 import { EmitFunction } from "../eventeloSource.interfaces";
 
-interface UseEmitReturnType {
+export interface UseEmitReturnType {
   emit: EmitFunction;
 }
 

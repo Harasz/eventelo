@@ -5,7 +5,7 @@ import {
   UnsubscribeAllFunction,
 } from "../eventeloSource.interfaces";
 
-interface UseSubscriberReturnType {
+export interface UseSubscriberReturnType {
   subscribe: SubscribeFunction;
   unsubscribe: UnsubscribeFunction;
   unsubscribeAll: UnsubscribeAllFunction;

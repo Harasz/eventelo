@@ -1,6 +1,6 @@
 {
   "name": "eventelo",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Communicate React components using event-based hooks.",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
