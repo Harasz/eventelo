@@ -56,7 +56,7 @@ export const EventeloSource: EventeloSource = {
     EventeloSource.eventMap = {};
   },
 
-  emit: function <DataType = unknown>(eventName: EventName, callbackData: DataType) {
+  emit: function <DataType = unknown>(eventName: EventName, callbackData?: DataType) {
     if (!(eventName in EventeloSource.eventMap)) {
       return 0;
     }

@@ -27,7 +27,7 @@ import { useEffect, useState } from "react";
 
 export const Sub = () => {
   const [state, setState] = useState("..");
-  const { subscribe, unsubscribe, uns } = useSubscriber();
+  const { subscribe, unsubscribe, unsubscribeAll } = useSubscriber();
 
   useEffect(() => {
     // Subscribe callback to event by name "input"
@@ -69,6 +69,7 @@ export const Emiter = () => {
 ```
 
 More [examples](https://github.com/Harasz/eventelo/tree/main/examples) of usage.
+The best [example here](https://github.com/Harasz/use-async-modal/tree/main/src/events).
 
 ## Contributing
 
